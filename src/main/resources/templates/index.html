@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <head>
+    <meta charset="UTH-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <title>Mun sumpit</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <section class="container">
+      <header class="jumbotron">
+        <h1>"Elämä ilman kahvia on kuin pyöräily ilman satulaa..."</h1>
+      </header>
+
+      <h2>Mun Kaffet</h2>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nimi</th>
+            <th scope="col">Paino</th>
+            <th scope="col">Hinta</th>
+            <th scope="col">Paahtoaste</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="kahvi : ${kaffet}">
+            <th scope="row" th:text="${kahvi.id}"></th>
+            <td th:text="${kahvi.nimi}">Item name</td>
+            <td th:text="${kahvi.paino}">Item weigth</td>
+            <td th:text="${kahvi.hinta}">Item price</td>
+            <td th:text="${kahvi.paahto}">Item roast</td>
+            <td>
+              <a
+                class="btn btn-danger"
+                th:href="@{/kofi/delete/{kahvi}(kahvi=${kahvi.id})}"
+                >Poista</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br /><br />
+
+      <h2>Lisää uus kaffe</h2>
+
+      <form th:action="@{/kofi}" method="POST">
+        <div class="form-group">
+          <label for="name">Merkki: </label>
+          <input type="text" class="form-control" id="name" name="nimi" />
+        </div>
+        <div class="form-group">
+          <label for="weight">Paino(gr):</label>
+          <input type="text" class="form-control" id="weight" name="paino" />
+        </div>
+        <div class="form-group">
+          <label for="price">Hinta(€) :</label>
+          <input type="text" class="form-control" id="price" name="hinta" />
+        </div>
+        <div class="form-group">
+          <label for="roast">Paahtoaste:</label>
+          <select class="form-control" id="roast" name="paahto">
+            <option value="1">1 [uno]</option>
+            <option value="2">2 [dos]</option>
+            <option value="3">3 [tres]</option>
+            <option value="4">4 [cuatro]</option>
+            <option value="5">5 [cinco]</option>
+          </select>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Valamis</button>
+      </form>
+
+      <br /><br />
+
+      <footer>
+        <p>@Moar Kofi Co.</p>
+      </footer>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
